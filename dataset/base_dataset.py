@@ -49,9 +49,7 @@ class BaseDataset(data.Dataset):
             dsize = int(image.shape[1] * scale_factor + 0.5), int(image.shape[0] * scale_factor + 0.5)
         image = cv2.resize(image, dsize, interpolation = cv2.INTER_LINEAR)
         if label is not None:
-            # Labels are only resized during training.
-            if self.mode == 'train':
-                label = cv2.resize(label, dsize, interpolation = cv2.INTER_NEAREST)
+            label = cv2.resize(label, dsize, interpolation = cv2.INTER_NEAREST)
             return image, label
         else:
             return image
